@@ -1,4 +1,4 @@
-# How the training clip is made (make_clip.py).
+# How the training clip is made (training/make_clip.py).
 #
 # Every move of moves.yaml at least once, then random moves until the clip is long enough:
 # each a few beats long at a random size, stepping in and out of the dancing stance now

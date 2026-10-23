@@ -25,11 +25,11 @@ from pathlib import Path
 import numpy as np
 import yaml
 
-from curves import smootherstep, split_hits
-from robot import ARMS, DANCE, HOME_STANCE, JOINTS, SUPPORT, Kin, Targets, WholeBodyIK, arm_tips_base, \
+from motion.curves import smootherstep, split_hits
+from motion.robot import ARMS, DANCE, HOME_STANCE, JOINTS, SUPPORT, Kin, Targets, WholeBodyIK, arm_tips_base, \
     base_pose, home_qpos, quat_from_rpy, quat_mat, rpy_from_quat
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[1]
 CONTROL_DT = 0.02          # 50 Hz, the dance policy's rate
 STEP_LIFT = 0.03           # m, foot height while stepping in / out
 STEP_ORDER = ("LR", "RR", "LM", "RM")

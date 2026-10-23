@@ -9,27 +9,29 @@ tempo in it, it learns to follow whatever you give it later. Settings: library/c
 Every frame is checked for balance, reach and speed. A move that fails is danced
 smaller and the clip rebuilt, a few times if needed.
 
-    python make_clip.py                 # ~6 min, writes clip/
-    python make_clip.py --minutes 1     # quick look (still every move once)
+    python training/make_clip.py                 # ~6 min, writes clip/
+    python training/make_clip.py --minutes 1     # quick look (still every move once)
 """
 
 from __future__ import annotations
 
 import argparse
 import json
+import sys
 import time
 from dataclasses import asdict
 from pathlib import Path
 
-import numpy as np
-import yaml
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))           # so `motion` and `library` import from here
 
-import compose
-from compose import Composer, Enter, Exit, HoldHome, Station, TempoMap, layers, load_limits, named_moves, \
-    validate_clip, write_clip
-from robot import THRESH, evaluate
+import numpy as np  # noqa: E402
+import yaml  # noqa: E402
 
-ROOT = Path(__file__).resolve().parent
+from motion import compose  # noqa: E402
+from motion.compose import Composer, Enter, Exit, HoldHome, Station, TempoMap, layers, load_limits, \
+    named_moves, validate_clip, write_clip  # noqa: E402
+from motion.robot import THRESH, evaluate  # noqa: E402
 
 
 def tempo_curve(rng, n_beats, lo, hi):

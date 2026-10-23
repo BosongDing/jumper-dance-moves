@@ -8,11 +8,11 @@ Some parts come from Jumper (https://github.com/KingKongRobotics/jumper),
 Copyright 2026 KingKong Robotics, licensed under the Apache License 2.0
 (licenses/Apache-2.0.txt):
 
-  env.py                 follows Jumper's dance environment
+  training/env.py        follows Jumper's dance environment
                          (tasks/jumper/common/dance/env.py), changed for this move
                          library: the tracking widths, the height limit read from the
                          clip, the clip's phase held constant
-  robot.py               the dancing stance (DANCE) is taken from Jumper's crab dance
+  motion/robot.py        the dancing stance (DANCE) is taken from Jumper's crab dance
   checkpoint/policy.pt   trained starting from Jumper's dance policy
                          (tasks/jumper/dance/out/example/model_2300.pt)
 

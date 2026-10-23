@@ -18,9 +18,9 @@ from pathlib import Path
 
 import numpy as np
 
-from compose import ClawOut
-from curves import bumps, catmull_rom_loop, frac, hits, pulse, smoothstep, strike, swing, swing_sin
-from robot import arm_tips_base, base_pose, mirror, quat_mat
+from motion.compose import ClawOut
+from motion.curves import bumps, catmull_rom_loop, frac, hits, pulse, smoothstep, strike, swing, swing_sin
+from motion.robot import arm_tips_base, base_pose, mirror, quat_mat
 
 DATA = Path(__file__).resolve().parent / "data"
 

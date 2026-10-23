@@ -1,7 +1,7 @@
 # A template for your own song. Find its tempo and first beat with
-#     python beats.py examples/my_song.mp3
+#     python perform/beats.py examples/my_song.mp3
 # put the numbers below, pick moves from library/moves.yaml, and run
-#     python dance.py examples/my_song.yaml
+#     python perform/dance.py examples/my_song.yaml
 music: examples/my_song.mp3
 bpm: 120                  # beats per minute
 first_beat: 0.0           # seconds into the song

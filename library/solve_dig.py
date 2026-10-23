@@ -18,8 +18,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import numpy as np  # noqa: E402
 from scipy.optimize import minimize  # noqa: E402
 
-from compose import Composer, Station, TempoMap, use_library  # noqa: E402
-from robot import FOOT_SITE_Z, MIRROR, SUPPORT, Kin, polygon_margin  # noqa: E402
+from motion.compose import Composer, Station, TempoMap, use_library  # noqa: E402
+from motion.robot import FOOT_SITE_Z, MIRROR, SUPPORT, Kin, polygon_margin  # noqa: E402
 
 moves = use_library()
 DRUM_HIT, UP = moves.DRUM_HIT, moves.UP

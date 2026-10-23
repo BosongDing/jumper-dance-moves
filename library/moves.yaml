@@ -1,7 +1,7 @@
 # The move library: 29 moves from the Crab Rave music video, plus 3 made for our own video.
 # Each is a body layer and a claw layer from layers.py, sometimes with an accent or an
 # offset in beats; `mv` is the moment of the music video it comes from.
-# make_references.py writes one reference motion per move into references/, and a
+# motion/make_references.py writes one reference motion per move into references/, and a
 # choreography uses them by name: {move: P01_bounce_counter, beats: 8}.
 moves:
   P01_bounce_counter: {body: bounce, claw: counter, mv: "2:33.3",

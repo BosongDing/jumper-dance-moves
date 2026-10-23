@@ -1,8 +1,8 @@
 """Dance a choreography in MuJoCo with physics, and put the music on it.
 
-    python dance.py examples/crab_rave.yaml                # -> out/crab_rave/show.mp4
-    python dance.py examples/crab_rave.yaml --tempo 1.25   # same dance, song 25% faster
-    python dance.py examples/crab_rave.yaml --reference    # just the planned motion, no physics
+    python perform/dance.py examples/crab_rave.yaml                # -> out/crab_rave/show.mp4
+    python perform/dance.py examples/crab_rave.yaml --tempo 1.25   # same dance, song 25% faster
+    python perform/dance.py examples/crab_rave.yaml --reference    # just the planned motion, no physics
 
 Dance blocks are performed by our policy, tracking a reference composed on the song's
 own beat grid. Walk sections use the walking (posture) policy that ships with jumper,
@@ -16,11 +16,14 @@ import argparse
 import json
 import os
 import subprocess
+import sys
 import time
 import warnings
 from dataclasses import asdict
 from pathlib import Path
 
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))           # so `motion`, `training` and `library` import from here
 os.environ.setdefault("MUJOCO_GL", "egl")
 warnings.filterwarnings("ignore", message=".*torch.jit.script.*")
 
@@ -29,12 +32,11 @@ import numpy as np  # noqa: E402
 import tasks  # noqa: E402
 from PIL import Image, ImageDraw, ImageFont  # noqa: E402
 
-from compose import CONTROL_DT, Composer, DanceBlock, HoldHome, Trajectory, WalkSection, load_limits, \
+from motion.compose import CONTROL_DT, Composer, DanceBlock, HoldHome, Trajectory, WalkSection, load_limits, \
     load_show, validate_clip, write_clip  # noqa: E402
-from curves import pulse  # noqa: E402
-from robot import JOINTS, home_qpos, load_model  # noqa: E402
+from motion.curves import pulse  # noqa: E402
+from motion.robot import JOINTS, home_qpos, load_model  # noqa: E402
 
-ROOT = Path(__file__).resolve().parent
 DANCE_POLICY = ROOT / "checkpoint" / "policy.pt"
 WALK_POLICY = Path(tasks.__file__).parent / "jumper/posture/out/example/model_74800.pt"
 DT = CONTROL_DT
@@ -174,8 +176,7 @@ class Performer:
         from mjlab.tasks.tracking.rl import MotionTrackingOnPolicyRunner
         from mjrl.replay import script_commands
 
-        import env
-        import train
+        from training import env, train
 
         _cpu_backend()
         self.walker = Robot(tasks.load_env_cfg("jumper.posture", play=True),

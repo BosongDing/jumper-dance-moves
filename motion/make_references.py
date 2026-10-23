@@ -13,23 +13,25 @@ One .npz per move, named after it (e.g. P01_bounce_counter.npz):
   beats        the beat count at each frame
   spec         the move as written in moves.yaml (json), and bpm
 
-    python make_references.py
+    python motion/make_references.py
 """
 
 from __future__ import annotations
 
 import argparse
 import json
+import sys
 from multiprocessing import Pool
 from pathlib import Path
 
-import numpy as np
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))           # so `motion` and `library` import from here
 
-import compose
-from compose import CONTROL_DT, Composer, Station, TempoMap, layers, load_limits, named_moves, use_library
-from robot import JOINTS
+import numpy as np  # noqa: E402
 
-ROOT = Path(__file__).resolve().parent
+from motion import compose  # noqa: E402
+from motion.compose import CONTROL_DT, Composer, Station, TempoMap, layers, load_limits, named_moves, use_library  # noqa: E402
+from motion.robot import JOINTS  # noqa: E402
 
 BPM, BEATS, INTENSITY = 125.0, 8, 0.9
 

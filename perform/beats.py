@@ -1,6 +1,6 @@
 """Find a song's tempo and its first beat, for a choreography file.
 
-    python beats.py examples/my_song.mp3
+    python perform/beats.py examples/my_song.mp3
 
 Prints the `bpm:` and `first_beat:` lines to paste into the choreography. It assumes a
 steady tempo, like most dance music.

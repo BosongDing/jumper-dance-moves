@@ -30,8 +30,8 @@ import numpy as np  # noqa: E402
 from scipy.ndimage import gaussian_filter1d  # noqa: E402
 from scipy.spatial.transform import Rotation  # noqa: E402
 
-from compose import Composer, Station, TempoMap, use_library  # noqa: E402
-from robot import ARMS, DANCE, SUPPORT, Costs, Kin, Targets, WholeBodyIK, mirror  # noqa: E402
+from motion.compose import Composer, Station, TempoMap, use_library  # noqa: E402
+from motion.robot import ARMS, DANCE, SUPPORT, Costs, Kin, Targets, WholeBodyIK, mirror  # noqa: E402
 
 moves = use_library()
 GANIMATOR_BEAT_S, GANIMATOR_NPZ, UP_TALL = moves.GANIMATOR_BEAT_S, moves.GANIMATOR_NPZ, moves.UP_TALL

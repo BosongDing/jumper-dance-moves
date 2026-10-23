@@ -1,14 +1,14 @@
 """Train the dance policy with PPO (rsl_rl), 4096 robots at once on one GPU.
 
-The policy learns to follow the reference in clip/ (make_clip.py). We don't start from
+The policy learns to follow the reference in clip/ (training/make_clip.py). We don't start from
 scratch but from the dance policy that ships with the jumper repo: it already knows how
 to stand and wave its claws on this body, so it gets to "dancing to the clip" much
 faster. After adding moves to the library, start from our policy instead and train
 less (--init checkpoint/policy.pt --iterations 5000).
 
-    python train.py                                # ~4 h on an RTX 4090
-    python train.py --iterations 200 --envs 512    # smoke test
-    python train.py --resume logs/<run>/model_5000.pt
+    python training/train.py                                # ~4 h on an RTX 4090
+    python training/train.py --iterations 200 --envs 512    # smoke test
+    python training/train.py --resume logs/<run>/model_5000.pt
 
 Checkpoints go to logs/<date-time>/model_<iteration>.pt every 50 iterations, and
 TensorBoard logs next to them (tensorboard --logdir logs).
@@ -17,15 +17,17 @@ TensorBoard logs next to them (tensorboard --logdir logs).
 from __future__ import annotations
 
 import argparse
+import sys
 from dataclasses import asdict
 from datetime import datetime
 from pathlib import Path
 
-import tasks
-from mjrl.backend import resolve
-from mjrl.backend.select import use_backend
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))           # so `training` imports from here
 
-ROOT = Path(__file__).resolve().parent
+import tasks  # noqa: E402
+from mjrl.backend import resolve  # noqa: E402
+from mjrl.backend.select import use_backend  # noqa: E402
 JUMPER_DANCE = Path(tasks.__file__).parent / "jumper/dance/out/example/model_2300.pt"
 
 
@@ -70,7 +72,7 @@ def main():
     from mjlab.rl import RslRlVecEnvWrapper
     from mjlab.tasks.tracking.rl import MotionTrackingOnPolicyRunner
 
-    from env import env_cfg
+    from training.env import env_cfg
 
     cfg = env_cfg(ROOT / "clip")
     cfg.scene.num_envs = res.num_envs

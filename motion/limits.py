@@ -9,21 +9,26 @@ No physics here: it's all geometry on the planned motion.
 
 Needed whenever you add or change moves. The full table takes a few minutes on 24 cores.
 
-    python limits.py                                    # every pair of layers
-    python limits.py --bodies arch --claws clap pump    # just these, merged in
+    python motion/limits.py                                    # every pair of layers
+    python motion/limits.py --bodies arch --claws clap pump    # just these, merged in
 """
 
 from __future__ import annotations
 
 import argparse
+import sys
 import time
 from multiprocessing import Pool
+from pathlib import Path
 
-import yaml
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))           # so `motion` and `library` import from here
 
-import compose
-from compose import Composer, Station, TempoMap, layers, use_library
-from robot import evaluate
+import yaml  # noqa: E402
+
+from motion import compose  # noqa: E402
+from motion.compose import Composer, Station, TempoMap, layers, use_library  # noqa: E402
+from motion.robot import evaluate  # noqa: E402
 
 BEATS = 8
 def check(body, claw, bpm, k=0.0, claw_intensity=1.0):

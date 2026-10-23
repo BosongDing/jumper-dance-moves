@@ -17,7 +17,9 @@ Everything runs in simulation (MuJoCo).
 | `library/` | how the moves are made: `moves.yaml` (the 29 moves, named), `layers.py` (their body and claw layers), `limits.yaml` (how big each can get) |
 | `SKILL.md` | how to make reference motions for new moves, step by step |
 | `examples/` | a choreography for Crab Rave, and a template for your own song |
-| the `.py` files | the code: making references (`curves.py`, `robot.py`, `compose.py`, `limits.py`, `make_references.py`), training (`make_clip.py`, `env.py`, `train.py`), dancing (`dance.py`, `beats.py`) |
+| `motion/` | code that makes reference motions: `curves.py` (beat-shaped curves), `robot.py` (Jumper's body and the inverse kinematics), `compose.py` (moves on the beat -> joint angles), `limits.py`, `make_references.py` |
+| `training/` | PPO training: `make_clip.py` (the training clip), `env.py` (what the policy sees and is paid for), `train.py` |
+| `perform/` | dancing: `dance.py` (a choreography with physics and the song), `beats.py` (a song's tempo) |
 
 ## How it works
 
@@ -58,9 +60,9 @@ NVIDIA GPU, install the much smaller CPU build before `pip install -e .`:
 ## Dance
 
 ```bash
-python dance.py examples/crab_rave.yaml                # -> out/crab_rave/show.mp4
-python dance.py examples/crab_rave.yaml --tempo 1.25   # the same dance, 25% faster
-python dance.py examples/crab_rave.yaml --reference    # the reference motion only, no physics
+python perform/dance.py examples/crab_rave.yaml                # -> out/crab_rave/show.mp4
+python perform/dance.py examples/crab_rave.yaml --tempo 1.25   # the same dance, 25% faster
+python perform/dance.py examples/crab_rave.yaml --reference    # the reference motion only, no physics
 ```
 
 `examples/crab_rave.yaml` needs your own copy of the song as `examples/crab_rave.mp3`.
@@ -70,14 +72,14 @@ which isn't ours to share. `python library/ganimator.py` downloads and converts 
 ### Your own song
 
 ```bash
-python beats.py examples/my_song.mp3      # prints bpm and first_beat
+python perform/beats.py examples/my_song.mp3      # prints bpm and first_beat
 ```
 
 Put those two numbers in a copy of `examples/my_song.yaml` and list moves by name, like
 `{move: P20_clap_bounce_snap, beats: 8}`. Then:
 
 ```bash
-python dance.py examples/my_song.yaml
+python perform/dance.py examples/my_song.yaml
 ```
 
 ## The reference files
@@ -100,14 +102,14 @@ They're plain arrays, so you can use them with other training code too.
 big it can be, look at it, write the references, train. The training part is:
 
 ```bash
-python make_clip.py                                          # every move at every tempo, ~7 min of dance
-python train.py --init checkpoint/policy.pt --iterations 5000   # after adding moves
-python train.py                                              # or from scratch: ~4 h on an RTX 4090
+python training/make_clip.py                                          # every move at every tempo, ~7 min of dance
+python training/train.py --init checkpoint/policy.pt --iterations 5000   # after adding moves
+python training/train.py                                              # or from scratch: ~4 h on an RTX 4090
 ```
 
 `policy.pt` was trained in four stages while the moves were being made, about 21,500
 PPO iterations in all. It started from Jumper's own dance policy. Each stage's clip was a
-random mix of the body and claw layers in `library/layers.py`. `make_clip.py` now builds
+random mix of the body and claw layers in `library/layers.py`. `training/make_clip.py` now builds
 the clip from the named moves instead, every one at least once, so whatever is in
 `moves.yaml` is what a new policy learns.
 
