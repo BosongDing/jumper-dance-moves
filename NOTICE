@@ -1,0 +1,20 @@
+Jumper dance moves
+Copyright 2026 Bosong Ding (https://github.com/BosongDing)
+
+Licensed under the PolyForm Noncommercial License 1.0.0 (LICENSE.md): you may use, change
+and share it for any noncommercial purpose, but not for commercial use.
+
+Some parts come from Jumper (https://github.com/KingKongRobotics/jumper),
+Copyright 2026 KingKong Robotics, licensed under the Apache License 2.0
+(licenses/Apache-2.0.txt):
+
+  env.py                 follows Jumper's dance environment
+                         (tasks/jumper/common/dance/env.py), changed for this move
+                         library: the tracking widths, the height limit read from the
+                         clip, the clip's phase held constant
+  robot.py               the dancing stance (DANCE) is taken from Jumper's crab dance
+  checkpoint/policy.pt   trained starting from Jumper's dance policy
+                         (tasks/jumper/dance/out/example/model_2300.pt)
+
+The Apache License 2.0 still applies to the material that comes from Jumper. The
+noncommercial license covers everything else.

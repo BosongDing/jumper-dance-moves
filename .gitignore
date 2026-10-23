@@ -1,0 +1,13 @@
+# the song (bring your own copy) and other people's data
+*.mp3
+*.mp4
+*.wav
+data/
+
+# made by the scripts
+clip/
+logs/
+out/
+__pycache__/
+.cache/
+MUJOCO_LOG.TXT

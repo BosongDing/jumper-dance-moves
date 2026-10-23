@@ -1,0 +1,14 @@
+# How the training clip is made (make_clip.py).
+#
+# Every move of moves.yaml at least once, then random moves until the clip is long enough:
+# each a few beats long at a random size, stepping in and out of the dancing stance now
+# and then, while the tempo wanders. The policy learns to follow whatever it's shown, so
+# everything it should dance later has to be in here.
+minutes: 7
+seed: 1
+bpm: [80, 170]                  # tempo range
+lengths: [4, 8, 8, 8, 12, 16]   # beats per move, picked at random
+intensity: [0.6, 1.0]           # body size, as a fraction of limits.yaml
+claw_intensity: [0.7, 1.0]      # one move in four gets smaller claws
+safe: P01_bounce_counter        # what a move that keeps failing the checks is swapped for
+weights: {}                     # e.g. {P24_dig: 2.0} to show a move twice as often

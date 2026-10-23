@@ -1,0 +1,42 @@
+# One crab dancing the first half of Crab Rave (0:29 - 1:46), following the song's parts.
+# No walking: it starts and ends in the dancing stance.
+#
+#   0:29.0  claps only         rise and clap, upward slap
+#   0:36.6  claps + synth      dig, fast dig (the digging scene in the MV)
+#   0:44.3  melody             drum, low sweep, arch, big level circle
+#   0:59.7  build-up           sway, nod, lean back and shake, rise and clap
+#   1:15.0  drop               the big moves
+music: examples/crab_rave.mp3      # your own copy of the song
+beats: examples/crab_rave_beats.npy   # 125 BPM, first beat 0.155 s into the official video
+start_beat: 60                     # 0:28.96, the first clap
+sections:
+  - dance:
+      enter: false
+      exit: false
+      moves:
+        # claps only
+        - {move: P28_rise_clap_groupA, beats: 8}
+        - {move: P21_up_slap_bounce, beats: 8}
+        # claps + synth
+        - {move: P24_dig, beats: 8}
+        - {move: P25_dig_fast, beats: 8}
+        # melody
+        - {move: P23_drum, beats: 8, accents: {snap: 0.8}}
+        - {move: P12_low_sweep_groove, beats: 8}
+        - {move: P03_arc_frontback_counter, beats: 8}
+        - {move: P10_hcircle_big_groove, beats: 8}
+        # build-up
+        - {move: P07_sway_groove, beats: 8}
+        - {move: P15_lean_nod_v, beats: 8}
+        - {move: P14_lean_shake_pump, beats: 4}
+        - {move: P28_rise_clap_groupA, beats: 8}
+        - {move: P21_up_slap_bounce, beats: 4}
+        # drop
+        - {move: P19_rock_dance_bounce, beats: 8}
+        - {move: P20_clap_bounce_snap, beats: 8}
+        - {move: P05_arc_side_swingclaws, beats: 8}
+        - {move: P11_isolation_big, beats: 8}
+        - {move: P13_low_sweep_swingclaws, beats: 8}
+        - {move: P26_ganimator, beats: 8}
+        - {move: P04_arc_frontback_upslap, beats: 8}
+        - {move: P28_rise_clap_groupA, beats: 8}

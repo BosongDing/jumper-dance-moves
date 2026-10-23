@@ -1,0 +1,16 @@
+# A template for your own song. Find its tempo and first beat with
+#     python beats.py examples/my_song.mp3
+# put the numbers below, pick moves from library/moves.yaml, and run
+#     python dance.py examples/my_song.yaml
+music: examples/my_song.mp3
+bpm: 120                  # beats per minute
+first_beat: 0.0           # seconds into the song
+start_beat: 8             # when the dance starts, counted in beats
+sections:
+  - dance:                # steps in, dances, steps out (enter / exit)
+      - {move: P01_bounce_counter, beats: 8}
+      - {move: P08_sway_swingclaws, beats: 8}
+      - {move: P20_clap_bounce_snap, beats: 8}
+      - {move: P10_hcircle_big_groove, beats: 8}
+      - {move: P24_dig, beats: 8, intensity: 0.8}     # a bit smaller than usual
+      - {move: P28_rise_clap_groupA, beats: 8}

@@ -1,0 +1,72 @@
+# The move library: 29 moves from the Crab Rave music video, plus 3 made for our own video.
+# Each is a body layer and a claw layer from layers.py, sometimes with an accent or an
+# offset in beats; `mv` is the moment of the music video it comes from.
+# make_references.py writes one reference motion per move into references/, and a
+# choreography uses them by name: {move: P01_bounce_counter, beats: 8}.
+moves:
+  P01_bounce_counter: {body: bounce, claw: counter, mv: "2:33.3",
+    what: "bounce, claws up as the body dips and down as it rises"}
+  P02_arc_frontback_swingclaws: {body: arch, claw: swing_fwd, mv: "1:26.4",
+    what: "front-back arc (dip in front, dip behind), claws swing with it"}
+  P03_arc_frontback_counter: {body: arch, claw: counter, mv: "1:26.4",
+    what: "front-back arc, claws against the dips"}
+  P04_arc_frontback_upslap: {body: arch, claw: up_slap, mv: "1:26.4",
+    what: "front-back arc, both claws slap up on the beat"}
+  P05_arc_side_swingclaws: {body: arch_y, claw: swing_side, mv: "2:33.3",
+    what: "left-right arc, claws sway with it"}
+  P06_arc_side_groove: {body: arch_y, claw: groove, mv: "2:33.3",
+    what: "left-right arc, claws bobbing on the beat"}
+  P07_sway_groove: {body: swing_y, claw: groove, mv: "2:33.3",
+    what: "left-right sway, claws bobbing on the beat"}
+  P08_sway_swingclaws: {body: swing_y, claw: swing_side, mv: "2:33.3",
+    what: "left-right sway, claws swaying with the body"}
+  P09_circle_groove: {body: circle, claw: groove, mv: "1:26.4",
+    what: "circle with tilt, claws bobbing"}
+  P10_hcircle_big_groove: {body: hcircle_big, claw: groove, accents: {bounce: 0.4}, mv: "1:26.4",
+    what: "bigger level circle (oval, wider side to side), claws bobbing, a small dip on every beat"}
+  P11_isolation_big: {body: hcircle_big, claw: isolation_big, accents: {bounce: 0.4}, mv: "1:41.7",
+    what: "bigger isolation: claws held out front (following 35% of the body), body circles wider"}
+  P12_low_sweep_groove: {body: low_sweep, claw: groove, mv: "2:33.3",
+    what: "sink on the left, travel low to the right, rise; then mirrored (one bar each)"}
+  P13_low_sweep_swingclaws: {body: low_sweep, claw: swing_side, mv: "2:33.3",
+    what: "the low sweep with the claws swaying along"}
+  P14_lean_shake_pump: {body: lean_shake, claw: pump, mv: "1:13.0",
+    what: "reared up, bigger leg shake, claws pumping"}
+  P15_lean_nod_v: {body: lean_nod, claw: hold_v, accents: {snap: 1.0}, mv: "1:13.0",
+    what: "head up, nod left / nod right, claws high, pincers snapping"}
+  P16_lean_nod_groove: {body: lean_nod, claw: groove, mv: "1:13.0",
+    what: "head up, nod left / nod right, claws bobbing"}
+  P17_pump_bounce: {body: bounce, claw: pump, mv: "1:13.0",
+    what: "raise the roof with a bounce"}
+  P18_alternate_arc: {body: arch, claw: alternate, mv: "1:34.3",
+    what: "alternate claws over the front-back arc"}
+  P19_rock_dance_bounce: {body: swing_y, claw: alternate, body_offset: 1.0, accents: {bounce: 0.9}, mv: "1:34.3",
+    what: "the MV 1:34 rock with more up and down"}
+  P20_clap_bounce_snap: {body: bounce, claw: clap, accents: {snap: 1.0}, mv: "1:24.4",
+    what: "overhead clap with a bounce, pincers snapping"}
+  P21_up_slap_bounce: {body: bounce, claw: up_slap, mv: "2:28.0",
+    what: "both claws slap up together on the beat"}
+  P22_up_slap_counter_arc: {body: arch_y, claw: up_slap, mv: "2:28.0",
+    what: "upward slap over the left-right arc"}
+  P23_drum: {body: bounce, claw: drum, mv: "0:59.5",
+    what: "drum"}
+  P24_dig: {body: crouch, claw: dig, mv: "0:36.6",
+    what: "the rake, 8th notes"}
+  P25_dig_fast: {body: crouch, claw: dig_fast, mv: "0:38.0",
+    what: "the rake, 16th notes"}
+  P26_ganimator: {body: ganimator, claw: ganimator, mv: "GANimator",
+    what: "GANimator crab dance"}
+  P27_snap_swing_groove: {body: swing_x, claw: groove, accents: {snap: 1.0}, mv: "1:26.4",
+    what: "front-back sway, claws bobbing, pincers snapping"}
+  P28_rise_clap_groupA: {body: rise, claw: rise_clap, mv: "1:07.4",
+    what: "crouch, stand up tall with the head raised, clap above the head at the top (every 2 beats, group A)"}
+  P29_rise_clap_groupB: {body: rise, claw: rise_clap, body_offset: 1.0, claw_offset: 1.0, mv: "1:07.4",
+    what: "the same, one beat later (group B, alternating with A as in MV 1:07)"}
+
+# Made for our own video
+  duet_slow: {body: duet_slow, claw: duet_slow, intensity: 1.0, mv: "0:29.0",
+    what: "the opening clap duet, slow part: two big claps on 1 and 2"}
+  duet_fast: {body: duet_fast, claw: duet_fast, intensity: 1.0, mv: "0:29.0",
+    what: "the opening clap duet, fast part: three quick claps on 3, 3-and, 4"}
+  low_glide: {body: low_glide, claw: groove, mv: "2:33.3",
+    what: "the low sweep at double speed, side to side on the beat"}
